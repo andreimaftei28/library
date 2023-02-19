@@ -54,7 +54,6 @@ class Book(models.Model):
     publisher = models.ForeignKey(Publisher, on_delete=models.PROTECT, null=True)
 
     class Meta:
-        unique_together = ("name", "author", )
         ordering = ("name", "author")
     
     def __str__(self):
