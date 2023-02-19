@@ -1,0 +1,38 @@
+{% load static %}
+<h1>All books</h1>
+<a href="add/">Add</a>
+{% for book in book_list %}
+<div
+  style="
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 400px;
+    max-height: 400px;
+    margin: 0 auto;
+  "
+>
+  <img
+    width="200"
+    height="300"
+    src="{{ book.image.url }}"
+    alt="{{ book.title }}"
+  />
+  <ul>
+    <li>Title: {{ book.name }}</li>
+    <li>Subject: {{ book.subject }}</li>
+    <li>Author: {{ book.author }}</li>
+    <li>ISBN: {{ book.isbn }}</li>
+    <li>
+      <a
+        style="color: black"
+        href="{{ book.preview.url }}"
+        target="_blank"
+        download
+        >Download preview</a
+      >
+    </li>
+  </ul>
+</div>
+<br />
+{% endfor %}
