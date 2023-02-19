@@ -5,9 +5,15 @@ class CustomAddress(models.Model):
     address1 = AddressField()
     address_2 = AddressField(related_name='+', blank=True, null=True)
     
+    class Meta:
+        verbose_name_plural = "Addresses"
     
 class Subject(models.Model):
     name = models.CharField(max_length=255)
+    
+    class Meta:
+        verbose_name_plural = "Subjects"
+        ordering = ("name", )
     
     def __str__(self):
         return self.name
@@ -16,6 +22,11 @@ class Subject(models.Model):
 class Author(models.Model):
     name = models.CharField(max_length=500)
     address = models.ForeignKey(CustomAddress, on_delete=models.PROTECT, null=True, blank=True)
+    
+    class Meta:
+        verbose_name_plural = "Authors"
+        ordering = ("name", "address")
+    
     def __str__(self):
         return self.name
     
@@ -23,6 +34,10 @@ class Author(models.Model):
 class Publisher(models.Model):
     name = models.CharField(max_length=500)
     address = models.ForeignKey(CustomAddress, on_delete=models.PROTECT, null=True, blank=True)
+    
+    class Meta:
+        verbose_name_plural = "Publishers"
+        ordering = ("name", "address")
     
     def __str__(self):
         return self.name
@@ -38,5 +53,9 @@ class Book(models.Model):
     author = models.ForeignKey(Author, on_delete=models.PROTECT, null=True)
     publisher = models.ForeignKey(Publisher, on_delete=models.PROTECT, null=True)
 
+    class Meta:
+        unique_together = ("name", "author", )
+        ordering = ("name", "author")
+    
     def __str__(self):
         return self.name
