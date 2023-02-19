@@ -37,10 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    "books.apps.BooksConfig", 
+    'django.contrib.staticfiles', 
+    "rest_framework",
     "address", # django-address library
     "bootstrapform",
+    "books.apps.BooksConfig",
+    "api.apps.ApiConfig",
 ]
 
 MIDDLEWARE = [
